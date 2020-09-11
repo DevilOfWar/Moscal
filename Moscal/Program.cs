@@ -43,6 +43,34 @@ namespace Moscal
         static void Main(string[] args)
         {
             // записать заполнение и вызов сортировки массива
+            Console.WriteLine("Enter count of dates to random: ");
+            int count = Convert.ToInt16(Console.ReadLine());
+            Struct[] dates = new Struct[count];
+            Random random = new Random();
+            Console.WriteLine("Array before sort:");
+            for (int index = 0; index < count; index++)
+            {
+                int month = random.Next(1, 12);
+                int day = random.Next(1, 31);
+                int year = random.Next(1, 4000);
+                DateTime firstField = new DateTime(year, month, day);
+                month = random.Next(1, 12);
+                day = random.Next(1, 31);
+                year = random.Next(1, 4000);
+                DateTime secondField = new DateTime(year, month, day);
+                dates[index] = new Struct(firstField, secondField);
+                Console.Write(dates[index].FirstField);
+                Console.Write("   ");
+                Console.WriteLine(dates[index].SecondField);
+            }            
+            dates = Sort(dates);
+            Console.WriteLine("Array after sort:");
+            for (int index = 0; index < count; index++)
+            {
+                Console.Write(dates[index].FirstField);
+                Console.Write("   ");
+                Console.WriteLine(dates[index].SecondField);
+            }
         }
     }
 }
