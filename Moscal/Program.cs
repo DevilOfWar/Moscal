@@ -22,19 +22,19 @@ namespace Moscal
                 int indexMax = 0;
                 for (int indexSecond = 0; indexSecond < dates.Count() - indexFirst; indexSecond++)
                 {
-                    if (dates[indexSecond].FirstField > dates[indexMax].FirstField)
+                    if (dates[indexSecond].FirstField > dates[indexMax].FirstField)// если первая дата больше
                     {
                         indexMax = indexSecond;
                     }
-                    else if (dates[indexSecond].FirstField == dates[indexMax].FirstField)
+                    else if (dates[indexSecond].FirstField == dates[indexMax].FirstField) // если первая дата равная
                     {
-                        if (dates[indexSecond].SecondField > dates[indexMax].SecondField)
+                        if (dates[indexSecond].SecondField > dates[indexMax].SecondField) // если вторая дата больше
                         {
                             indexMax = indexSecond;
                         }
                     }
                 }
-                Struct extraVar = dates[indexMax];
+                Struct extraVar = dates[indexMax]; // перенос в конец максимум
                 dates[indexMax] = dates[dates.Count() - indexFirst - 1];
                 dates[dates.Count() - indexFirst - 1] = extraVar;
             }
@@ -43,12 +43,12 @@ namespace Moscal
         static void Main(string[] args)
         {
             // записать заполнение и вызов сортировки массива
-            Console.WriteLine("Enter count of dates to random: ");
+            Console.WriteLine("Enter count of dates to random: "); // ввод кол-ва элементов
             int count = Convert.ToInt16(Console.ReadLine());
             Struct[] dates = new Struct[count];
             Random random = new Random();
             Console.WriteLine("Array before sort:");
-            for (int index = 0; index < count; index++)
+            for (int index = 0; index < count; index++) // генерация дат в цикле
             {
                 int month = random.Next(1, 12);
                 int day = random.Next(1, 31);
@@ -63,7 +63,7 @@ namespace Moscal
                 Console.Write("   ");
                 Console.WriteLine(dates[index].SecondField);
             }            
-            dates = Sort(dates);
+            dates = Sort(dates); // сортировка
             Console.WriteLine("Array after sort:");
             for (int index = 0; index < count; index++)
             {
